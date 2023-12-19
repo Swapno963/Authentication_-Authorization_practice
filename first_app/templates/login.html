@@ -7,6 +7,11 @@
     <h2>Login Page</h2>
     <!--{{form | crispy}} -->
     {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for er in form.non_field_errors  %}
+            <p class='bg-danger text-white p-3 rounded rounded-4'>{{er}}</p>
+        {% endfor %}
+    {% endif %}
     {% for fm in form %}
         {{fm.label_tag}} <!-- This is user name / last naem / email-->
         {{fm}} <!-- This is input box -->

@@ -35,8 +35,13 @@
              
             </ul>
             <form class="d-flex">
-              <a class="btn btn-outline-success text-white fw-bold"  href="{% url 'login'%}">Login</a>
-              <a class="btn btn-outline-success mx-3 text-white fw-bold" href="{% url 'signup'%}">Signup</a>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-outline-success text-white fw-bold"  href="{% url 'profile'%}">Profile</a>
+                    <a class="btn btn-outline-success text-white fw-bold mx-3"  href="{% url 'logout'%}">Logout</a>
+                {% else %}
+                    <a class="btn btn-outline-success mx-3 text-white fw-bold" href="{% url 'signup'%}">Signup</a>
+                    <a class="btn btn-outline-success mx-3 text-white fw-bold mx-3" href="{% url 'login'%}">Login</a>
+                {% endif %}
             </form>
           </div>
         </div>
