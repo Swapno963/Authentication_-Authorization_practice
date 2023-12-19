@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 {%load crispy_forms_tags%}
 
+
 {% block body %}
+<style>
+    .success{
+        color: green;
+    }
+    .warning{
+        color:red;
+    }
+    .info{
+        clor:gray;
+    }
+</style>
+
+    {% if messages%}
+        {% for m in messages %}
+            <p {% if m.tags %} class="{{m.tags}}" {% endif%}>{{m}}</p>
+            
+        {% endfor %}
+    {% endif %}
+
     <form method='post' style='width:50%; margin:auto;' novalidate> 
         {% comment %} novalidate stops html to validate {% endcomment %}
         <h2>This is Form</h2>
@@ -12,6 +32,7 @@
             {{fm}} <!-- This is input box -->
             {{fm.errors | striptags}} <!-- If user don't follow rules then it gives errors-->
         {% endfor %}
+        <br>
         <input class='btn btn-primary fw-bold' type="submit" value="Submit">
     </form>
 {% endblock body %}
