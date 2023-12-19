@@ -1,7 +1,10 @@
 {% extends "base.html" %}
-
+{%load crispy_forms_tags%}
 
 {% block body %}
-    <h2>This is home</h2>
-    {{form.as_p}}
+    <form method='post' style='width:50%; margin:auto;'>
+        <h2>This is Form</h2>
+        {{form | crispy}}
+        <input type="submit" value="Submit">
+    </form>
 {% endblock body %}
