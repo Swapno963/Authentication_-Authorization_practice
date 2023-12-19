@@ -4,7 +4,12 @@
 {% block body %}
     <form method='post' style='width:50%; margin:auto;'>
         <h2>This is Form</h2>
-        {{form | crispy}}
-        <input type="submit" value="Submit">
+        <!--{{form | crispy}} -->
+        {% for fm in form %}
+            {{fm.label_tag}}
+            {{fm}}
+            {{fm.errors}}
+        {% endfor %}
+        <input class='btn btn-primary fw-bold' type="submit" value="Submit">
     </form>
 {% endblock body %}
