@@ -3,6 +3,30 @@
 {% block body %}
     <h2>This is Profile Page</h2>
     <h3>Hello, {{user}}</h3>
-    <p><a href="{% url 'pass_change'%}">Change Your Pass</a></p>
-    <p><a href="{% url 'pass_change2'%}">Change Your Pass without old pass</a></p>
+    <p >
+        <a class='btn btn-info' href="{% url 'pass_change'%}">Change Your Pass</a>
+        <a class='my-3 btn btn-warning' href="{% url 'pass_change2'%}">Change Your Pass without old pass</a>
+    </p>
+
+
+
+    {%load crispy_forms_tags%}
+    <form method='post' style='width:50%; margin:auto;' novalidate> 
+        {% comment %} novalidate stops html to validate {% endcomment %}
+        <h2>Change Data</h2>
+        <!--{{form | crispy}} -->
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            {% for er in form.non_field_errors  %}
+                <p class='bg-danger text-white p-3 rounded rounded-4'>{{er}}</p>
+            {% endfor %}
+        {% endif %}
+        {% for fm in form %}
+            {{fm.label_tag}} <!-- This is user name / last naem / email-->
+            {{fm}} <!-- This is input box -->
+            {{fm.errors | striptags}} <!-- If user don't follow rules then it gives errors-->
+        {% endfor %}
+        <br>
+        <input class='btn btn-warning fw-bold' type="submit" value="Change Data">
+    </form>
 {% endblock body %}
